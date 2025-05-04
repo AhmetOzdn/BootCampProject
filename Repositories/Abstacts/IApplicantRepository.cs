@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Abstacts
 {
-    public interface IApplicantRepository
+    public interface IApplicantRepository : IRepository<Applicant, Guid>
     {
 
     }
