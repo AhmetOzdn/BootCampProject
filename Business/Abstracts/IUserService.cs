@@ -1,5 +1,5 @@
-﻿using Business.Dtos.Request.User;
-using Business.Dtos.Response.User;
+﻿using Business.Dtos.Request.Users;
+using Business.Dtos.Response.Users;
 using Entities;
 using System;
 using System.Collections.Generic;

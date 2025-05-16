@@ -1,7 +1,5 @@
-﻿using Business.Dtos.Request.Instructor;
-using Business.Dtos.Request.User;
-using Business.Dtos.Response.Instructor;
-using Business.Dtos.Response.User;
+﻿using Business.Dtos.Request.Instructors;
+using Business.Dtos.Response.Instructors;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +13,7 @@ namespace Business.Abstracts
     {
         CreatedInstructorResponse Add(CreateInstructorRequest request);
         List<GetListInstructorResponse> GetList();
-        UpdatedInstructorResponse Update(UpdateInstructorRequest instructorId);
-        DeletedInstructorResponse Delete(DeleteInstructorRequest instructorId);
+        UpdatedInstructorResponse Update(UpdateInstructorRequest request);
+        DeletedInstructorResponse Delete(DeleteInstructorRequest request);
     }
 }

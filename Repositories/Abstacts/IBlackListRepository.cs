@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Abstacts
 {
-    public interface IBlackListRepository : IRepository<Blacklist, Guid>
+    public interface IBlackListRepository : IRepository<BlackList, Guid>
     {
     }
 }

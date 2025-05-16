@@ -1,9 +1,6 @@
 ﻿using Business.Abstracts;
-using Business.Dtos.Request.Instructor;
-using Business.Dtos.Request.User;
-using Business.Dtos.Response.Instructor;
-using Business.Dtos.Response.User;
-using Microsoft.AspNetCore.Http;
+using Business.Dtos.Request.Instructors;
+using Business.Dtos.Response.Instructors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -40,7 +37,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<GetListUserResponse>> GetList()
+        public ActionResult<List<GetListInstructorResponse>> GetList()
         {
             return Ok(_instructorService.GetList());
         }

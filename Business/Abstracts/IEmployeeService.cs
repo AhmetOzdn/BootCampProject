@@ -1,18 +1,13 @@
-﻿using Business.Dtos.Response.Employee;
-using Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Business.Dtos.Request.Employees;
+using Business.Dtos.Response.Employees;
 
 namespace Business.Abstracts
 {
     public interface IEmployeeService
     {
-        CreatedEmployeeResponse Add(CreatedEmployeeResponse response);
-        List<Employee> GetAll();
-        void Update(Employee employee);
-        void Delete(Guid employeeId);
+        CreatedEmployeeResponse Add(CreateEmployeeRequest request);
+        List<GetListEmployeeResponse> GetList();
+        UpdatedEmployeeResponse Update(UpdateEmployeeRequest request);
+        DeletedEmployeeResponse Delete(DeleteEmployeeRequest request);
     }
 }

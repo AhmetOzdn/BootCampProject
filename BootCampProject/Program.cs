@@ -1,7 +1,9 @@
 
+using Business;
 using Business.Abstracts;
 using Business.Concretes;
 using Microsoft.EntityFrameworkCore;
+using Repositories;
 using Repositories.Abstacts;
 using Repositories.Concretes;
 using Repositories.Concretes.EntityFramework.Contexts;
@@ -13,17 +15,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<BaseDbContext>(op => op.UseSqlServer(builder.Configuration.GetConnectionString("EfConfiguration")));
+
+builder.Services.AddBusinessServices();
+builder.Services.AddRepositoriesServices(builder.Configuration); // burada kendi yazdigimiz repositories regitration tanimlamasi yaptik
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 //builder.Services.AddScoped<IConfiguration>();
 builder.Services.AddHttpContextAccessor();
-
-
-builder.Services.AddScoped<IUserService, UserManager>();     //her http request bir kez olusturulur
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-
-builder.Services.AddScoped<IInstructorService, InstructorManager>();     //her http request bir kez olusturulur
-builder.Services.AddScoped<IInstructorRepository, InstructorRepository>();
-
 
 
 var app = builder.Build();
@@ -36,6 +45,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// CORS aktif et
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

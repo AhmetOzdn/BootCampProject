@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repositories.Concretes.EntityFramework.EntityConfigurations
 {
-    public class BlackListConfiguration : IEntityTypeConfiguration<Blacklist>
+    public class BlackListConfiguration : IEntityTypeConfiguration<BlackList>
     {
-        public void Configure(EntityTypeBuilder<Blacklist> builder)
+        public void Configure(EntityTypeBuilder<BlackList> builder)
         {
             builder.ToTable("BlackLists");
             builder.HasKey(x => x.Id);
