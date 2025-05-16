@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Concretes
 {
-    public class BlackListRepository : EfRepositoryBase<Blacklist, Guid, BaseDbContext> ,IBlackListRepository
+    public class BlackListRepository : EfRepositoryBase<BlackList, Guid, BaseDbContext> ,IBlackListRepository
     {
         public BlackListRepository(BaseDbContext context) : base(context)
         {

@@ -1,18 +1,13 @@
-﻿using Business.Dtos.Response.Bootcamp;
-using Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Business.Dtos.Request.Bootcamps;
+using Business.Dtos.Response.Bootcamps;
 
 namespace Business.Abstracts
 {
     public interface IBootcampService
     {
-        CreatedBootcampResponse Add(CreatedBootcampResponse response);
-        List<Bootcamp> GetAll();
-        void Update(Bootcamp bootcamp);
-        void Delete(Guid bootcampId);
+        CreatedBootcampResponse Add(CreateBootcampRequest request);
+        List<GetListBootcampResponse> GetList();
+        UpdatedBootcampResponse Update(UpdateBootcampRequest request);
+        DeletedBootcampResponse Delete(DeleteBootcampRequest request);
     }
 }

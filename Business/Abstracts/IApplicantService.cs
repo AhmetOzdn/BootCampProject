@@ -1,5 +1,5 @@
-﻿using Business.Dtos.Request.Applicant;
-using Business.Dtos.Response.Applicant;
+﻿using Business.Dtos.Request.Applicants;
+using Business.Dtos.Response.Applicants;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -12,9 +12,9 @@ namespace Business.Abstracts
     public interface IApplicantService
     {
         CreatedApplicantResponse Add(CreateApplicantRequest request);
-        List<Applicant> GetAll();
-        void Update(Applicant applicant);
-        void Delete(Guid applicantId);
+        List<GetListApplicantResponse> GetList();
+        UpdatedApplicantResponse Update(UpdateApplicantRequest request);
+        DeletedApplicantResponse Delete(DeleteApplicantRequest request);
 
     }
 }

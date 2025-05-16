@@ -1,7 +1,11 @@
-﻿using Business.Abstracts;
-using Business.Dtos.Response.Application;
+﻿using AutoMapper;
+using Business.Abstracts;
+using Business.Dtos.Request.Applications;
+using Business.Dtos.Response.Applications;
+using Business.Dtos.Response.BlackLists;
 using Entities;
 using Repositories.Abstacts;
+using Repositories.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,30 +17,59 @@ namespace Business.Concretes
     public class ApplicationManager : IApplicationService
     {
         private readonly IApplicationRepository _applicationRepository;
-
-        public ApplicationManager(IApplicationRepository applicationRepository)
+        private readonly IMapper _mapper;
+        public ApplicationManager(IApplicationRepository applicationRepository, IMapper mapper)
         {
             _applicationRepository = applicationRepository;
+            _mapper = mapper;
         }
 
-        public CreatedApplicationResponse Add(CreatedApplicationResponse response)
+
+        public CreatedApplicationResponse Add(CreateApplicationRequest request)
         {
-            throw new NotImplementedException();
+            //Using AutoMapper
+            Application application = _mapper.Map<Application>(request);
+            Application createdApplication = _applicationRepository.Add(application);
+            CreatedApplicationResponse response = _mapper.Map<CreatedApplicationResponse>(createdApplication);
+            return response;
         }
 
-        public void Delete(Guid applicationId)
+        public DeletedApplicationResponse Delete(DeleteApplicationRequest request)
         {
-            throw new NotImplementedException();
+            //Using AutoMapper
+            Application selectedApplication = _applicationRepository.Get(sa => sa.Id == request.Id);
+
+            if (selectedApplication == null)
+                throw new Exception("Uygulamada silinecek eleman bulunamadı.");
+
+            _mapper.Map(request, selectedApplication);
+            _applicationRepository.Delete(selectedApplication);
+            Application deletedBlackList = _applicationRepository.Delete(selectedApplication);
+            DeletedApplicationResponse response = _mapper.Map<DeletedApplicationResponse>(deletedBlackList);
+            return response;
         }
 
-        public List<Application> GetAll()
+        public List<GetListApplicationResponse> GetList()
         {
-            throw new NotImplementedException();
+            //Using AutoMapper
+            List<Application> instructors = _applicationRepository.GetAll();
+            List<GetListApplicationResponse> responses = _mapper.Map<List<GetListApplicationResponse>>(instructors);
+            return responses;
         }
 
-        public void Update(Application application)
+        public UpdatedApplicationResponse Update(UpdateApplicationRequest request)
         {
-            throw new NotImplementedException();
+            //Using AutoMapper
+            Application selectedApplication = _applicationRepository.Get(sa => sa.Id == request.Id);
+
+            if (selectedApplication == null)
+                throw new Exception("Uygulamada güncellenecek eleman bulunamadı.");
+
+            _mapper.Map(request, selectedApplication);
+            _applicationRepository.Update(selectedApplication);
+            Application deletedBlackList = _applicationRepository.Update(selectedApplication);
+            UpdatedApplicationResponse response = _mapper.Map<UpdatedApplicationResponse>(deletedBlackList);
+            return response;
         }
     }
 }

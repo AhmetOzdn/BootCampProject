@@ -1,4 +1,7 @@
-﻿using Business.Dtos.Response.BlackList;
+﻿using Business.Dtos.Request.BlackLists;
+using Business.Dtos.Request.Bootcamps;
+using Business.Dtos.Response.BlackLists;
+using Business.Dtos.Response.Bootcamps;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -10,9 +13,9 @@ namespace Business.Abstracts
 {
     public interface IBlackListService
     {
-        CreatedBlackListResponse Add(CreatedBlackListResponse response);
-        List<Blacklist> GetAll();
-        void Update(Blacklist blackList);
-        void Delete(Guid blackListId);
+        CreatedBlackListResponse Add(CreateBlackListRequest request);
+        List<GetListBlackListResponse> GetList();
+        UpdatedBlackListResponse Update(UpdateBlackListRequest request);
+        DeletedBlackListResponse Delete(DeleteBlackListRequest request);
     }
 }

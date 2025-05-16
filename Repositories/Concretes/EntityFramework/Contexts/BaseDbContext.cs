@@ -10,7 +10,7 @@ namespace Repositories.Concretes.EntityFramework.Contexts
         protected IConfiguration Configuration { get; set; }
         public DbSet<Applicant> Applicants { get; set; }
         public DbSet<Application> Applications { get; set; }
-        public DbSet<Blacklist> BlackLists { get; set; }
+        public DbSet<BlackList> BlackLists { get; set; }
         public DbSet<Bootcamp> Bootcamps { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Instructor> Instructors { get; set; }

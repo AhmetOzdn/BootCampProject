@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Blacklist : BaseEntity<Guid>
+    public class BlackList : BaseEntity<Guid>
     {
         public string Reason { get; set; }
         public DateTime Date { get; set; }
